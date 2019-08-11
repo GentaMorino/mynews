@@ -6,11 +6,12 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>My プロフィール</h2>
-                @if(count($errors) >0)
+                @if (count($errors) > 0)
                     <p>入力に誤りがあります</p>
                 @endif
                 <table>
-                    <form action="{{ action('Admin\ProfileController@create') }}" method="post">
+                    <!-- action="{{ action('Admin\ProfileController@create') }}"     -->
+                    <form action="/admin/profile/create" method="post">
                         {{csrf_field()}}
                         <!--↓↓name↓↓-->
                         @if($errors->has('name'))
@@ -21,23 +22,23 @@
                         @endif
                         <tr>
                             <th>名前</th>
-                            <td><input type="text" name="name" value="{{ old('name')}}"></td>
+                            <td><input type="text" name="name" value="{{ old('name') }}"></td>
                         </tr>
                        <!--↑↑name↑↑-->
                        <!--↓↓gender↓↓-->
-                       @if($errors->has('gender'))
+                        @if($errors->has('gender'))
                             <tr>
                                 <th></th>
-                                <td>{{$errors->first('gender')}}</td>
+                                <td>{{ $errors->first('gender') }}</td>
                             </tr>
                         @endif
                         <tr>
                             <th>性別</th>
                             <td>
                                 <select name="gender">
-                                    <option selected="selected" value="">選択してください</option>
-                                    <option value="1">男性</option>
-                                    <option value="２">女性</option>
+                                    <option value="" @if(old('gender')=='') selected  @endif>選択して下さい</option>
+                                    <option value="male" @if(old('gender')=='male') selected  @endif>男性</option>
+                                    <option value="female" @if(old('gender')=='female') selected @endif>女性</option>
                                 </select>
                             </td>
                         </tr>
@@ -63,7 +64,7 @@
                         @endif
                         <tr>
                             <th>自己紹介</th>
-                            <td> <textarea name="body" rows="5" cols="40">{{ old('introduction') }}</textarea>　</td>
+                            <td> <textarea name="introduction" rows="5" cols="40">{{ old('introduction') }}</textarea>　</td>
                         </tr>
                        <!--↑↑introduction↑↑-->
                        <tr>
