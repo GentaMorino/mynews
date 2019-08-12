@@ -74,6 +74,27 @@
                        </tr>
                     </form>
                 </table>
+                <h2>編集履歴</h2>
+                @if($profile_form->profile_histories!=NULL)
+                    <table>
+                        <tr>
+                            <th>編集日</th>
+                            <th>名前</th>
+                            <th>性別</th>
+                            <th>趣味</th>
+                            <th>自己紹介</th>
+                        </tr>
+                        @foreach($profile_form->profile_histories as $history)
+                            <tr>
+                                <td>{{$history->edited_at}}</td>
+                                <td>{{$history->name}}</td>
+                                <td>{{$history->gender}}</td>
+                                <td>{{$history->hoby}}</td>
+                                <td>{{$history->introduction}}</td>
+                            </tr>
+                        @endforeach
+                    </table>
+                @endif
             </div>
         </div>
     </div>
