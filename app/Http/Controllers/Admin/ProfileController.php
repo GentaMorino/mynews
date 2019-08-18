@@ -39,18 +39,23 @@ class ProfileController extends Controller
     public function update(Request $request){
         DB::transaction(function ()use ($request) {
             $profile=Profile::find($request->id);
-            $profile_history=new ProfileHistory;
+            
             //更新履歴用初回用
             $have_prohis=ProfileHistory::where('profile_id',$profile->id)->first();
             
             if(!isset($have_prohis)){
-                $profile_history->profile_id=$profile->id;
-                $profile_history->edited_at=$profile->created_at;
-                $profile_history->name=$profile->name;
-                $profile_history->gender=$profile->gender;
-                $profile_history->hoby=$profile->hoby;
-                $profile_history->introduction=$profile->introduction;
-                $profile_history->save();
+                $first_his=new ProfileHistory;
+                
+                $first_his->profile_id=$profile->id;
+                $first_his->edited_at=$profile->created_at;
+                $first_his->name=$profile->name;
+                $first_his->gender=$profile->gender;
+                $first_his->hoby=$profile->hoby;
+                $first_his->introduction=$profile->introduction;
+                $first_his->created_at=$profile->created_at;
+                $first_his->save();
+                
+                $first_his->save();
             }
             
             $profile_form=$request->all();
@@ -58,6 +63,7 @@ class ProfileController extends Controller
             $profile->fill($profile_form)->save();
             
             //更新履歴用
+            $profile_history=new ProfileHistory;
             $profile_history->profile_id=$profile->id;
             $profile_history->edited_at=Carbon::now();
             $profile_history->name=$request->name;
