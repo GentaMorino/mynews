@@ -1,5 +1,4 @@
 @extends('layouts.profile')
-<!DOCTYPE html>
 @section('title','プロフィール編集')
 @section('content')
     <div class="container">
@@ -98,4 +97,4 @@
             </div>
         </div>
     </div>
-</html>
+@endsection
