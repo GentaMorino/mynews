@@ -10,10 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+Route::get('/', 'NewsController@index');
+Route::get('/profile', 'NewsController@profile');
+
 Route::group(['prefix'=>'admin'],function(){
     //news
     Route::get('news/create', 'Admin\NewsController@add');//->middleware('auth');
