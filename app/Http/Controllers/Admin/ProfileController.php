@@ -54,8 +54,6 @@ class ProfileController extends Controller
                 $first_his->introduction=$profile->introduction;
                 $first_his->created_at=$profile->created_at;
                 $first_his->save();
-                
-                $first_his->save();
             }
             
             $profile_form=$request->all();
