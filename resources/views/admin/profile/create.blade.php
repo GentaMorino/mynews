@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
+                <p>デプロイの作業になれるために、ビューを一部変更してもう一度デプロイを行なってください。</p>
                 <h2>My プロフィール</h2>
                 @if (count($errors) > 0)
                     <p>入力に誤りがあります</p>
